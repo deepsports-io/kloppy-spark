@@ -26,5 +26,3 @@ class DatasetSource(Source):
         pdf = pdf.drop(["ball_state", "ball_owning_team"], axis=1)
 
         return pipeline.spark.createDataFrame(pdf)
-
-        

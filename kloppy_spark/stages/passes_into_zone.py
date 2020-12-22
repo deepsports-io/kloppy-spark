@@ -13,12 +13,13 @@ class PassesIntoZone(Stage):
 
     def process(self, pipeline: Pipeline, inputs: DataFrame) -> DataFrame:
         zone_filter = filter_in_zone(self.zone)
-        passes = inputs \
-            .filter(F.col("event_type").isin(["PASS"])) \
-            .filter(F.col("team_id") == self.team_id) \
-            .filter(F.col("set_piece_type") != "CORNER_KICK") \
+        passes = (
+            inputs.filter(F.col("event_type").isin(["PASS"]))
+            .filter(F.col("team_id") == self.team_id)
+            .filter(F.col("set_piece_type") != "CORNER_KICK")
             .filter(
-                ~zone_filter(F.col("coordinates_x"), F.col("coordinates_y")) & 
-                zone_filter(F.col("end_coordinates_x"), F.col("end_coordinates_y"))
+                ~zone_filter(F.col("coordinates_x"), F.col("coordinates_y"))
+                & zone_filter(F.col("end_coordinates_x"), F.col("end_coordinates_y"))
             )
+        )
         return passes

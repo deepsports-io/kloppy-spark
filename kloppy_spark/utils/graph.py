@@ -21,7 +21,9 @@ class Graph:
 
         for next_stage in self.graph[key]:
             if not visited[next_stage]:
-                self._topological_sort_util(key, next_stage, self.vertices[next_stage], visited, stack)
+                self._topological_sort_util(
+                    key, next_stage, self.vertices[next_stage], visited, stack
+                )
 
         stack.insert(0, (prev_key, key, stage))
 
