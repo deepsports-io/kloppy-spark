@@ -7,7 +7,7 @@ with open("README.md", "r") as f:
 
 setup(
     name="kloppy-spark",
-    version="0.0.2",
+    version="0.0.3",
     author="Felix Schmdit",
     author_email="info@deepsports.io",
     url="https://deepsports.io",
