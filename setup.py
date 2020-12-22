@@ -10,10 +10,10 @@ setup(
     version="0.0.1",
     author="Felix Schmdit",
     author_email="info@deepsports.io",
-    url="https://kloppy.pysport.org/",
+    url="https://deepsports.io",
     packages=setuptools.find_packages(exclude=["tests"]),
     license="BSD",
-    description="Standardizing soccer tracking- and event data",
+    description="Spark Tools to work with Kloppy",
     long_description=readme,
     long_description_content_type="text/markdown",
     classifiers=[
@@ -26,15 +26,12 @@ setup(
         "License :: OSI Approved",
         "Topic :: Scientific/Engineering",
     ],
-    # entry_points={
-    #     "console_scripts": ["kloppy-query = kloppy.cmdline:run_query"]
-    # },
     install_requires=[
         "kloppy>=1.4.4",
         "pyspark>=3.0.1",
     ],
-    # extras_require={
-    #     "test": ["pytest", "pandas>=1.0.0"],
-    #     "development": ["pre-commit"],
-    # },
+    extras_require={
+        "test": ["pytest", "pandas>=1.0.0"],
+        "development": ["pre-commit"],
+    },
 )
