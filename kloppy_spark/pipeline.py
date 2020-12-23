@@ -14,6 +14,7 @@ class Pipeline:
         self.dag = Graph()
         self.sc = sc
         self.spark = SparkSession(self.sc)
+        self.intermediate_results = {}
 
     def add_source(self, name: str, source: "Source") -> Pipeline:
         self.dag.add_vertex(name, source)
@@ -36,7 +37,11 @@ class Pipeline:
         return self
 
     def run(self):
-        inputs = {}
+        self.intermediate_results = {}
         for stage_input, key, stage in self.dag.topological_sort():
-            stage_input = inputs[stage_input] if stage_input else None
-            inputs[key] = stage.process(pipeline=self, inputs=stage_input)
+            stage_input = (
+                self.intermediate_results[stage_input] if stage_input else None
+            )
+            self.intermediate_results[key] = stage.process(
+                pipeline=self, inputs=stage_input
+            )

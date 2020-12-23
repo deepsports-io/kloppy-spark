@@ -23,19 +23,51 @@ class CoordinateTransformer(Stage):
         result = (
             inputs.withColumn(
                 "coordinates_x",
-                from_base(to_base(F.col("coordinates_x"), 0, 100), 0, 105),
+                from_base(
+                    to_base(
+                        F.col("coordinates_x"),
+                        self.from_dim.x_dim.min,
+                        self.from_dim.x_dim.max,
+                    ),
+                    self.to_dim.x_dim.min,
+                    self.to_dim.x_dim.max,
+                ),
             )
             .withColumn(
                 "coordinates_y",
-                from_base(to_base(F.col("coordinates_y"), 0, 100), 0, 68),
+                from_base(
+                    to_base(
+                        F.col("coordinates_y"),
+                        self.from_dim.y_dim.min,
+                        self.from_dim.y_dim.max,
+                    ),
+                    self.to_dim.y_dim.min,
+                    self.to_dim.y_dim.max,
+                ),
             )
             .withColumn(
                 "end_coordinates_x",
-                from_base(to_base(F.col("end_coordinates_x"), 0, 100), 0, 105),
+                from_base(
+                    to_base(
+                        F.col("end_coordinates_x"),
+                        self.from_dim.x_dim.min,
+                        self.from_dim.x_dim.max,
+                    ),
+                    self.to_dim.x_dim.min,
+                    self.to_dim.x_dim.max,
+                ),
             )
             .withColumn(
                 "end_coordinates_y",
-                from_base(to_base(F.col("end_coordinates_y"), 0, 100), 0, 68),
+                from_base(
+                    to_base(
+                        F.col("end_coordinates_y"),
+                        self.from_dim.y_dim.min,
+                        self.from_dim.y_dim.max,
+                    ),
+                    self.to_dim.y_dim.min,
+                    self.to_dim.y_dim.max,
+                ),
             )
         )
         return result
