@@ -13,7 +13,7 @@ class Stage(ABC):
 
 class Source(Stage):
     @abstractmethod
-    def process(self, pipeline: "Pipeline", inputs: None) -> Any:
+    def process(self, pipeline: "Pipeline", inputs=None) -> Any:
         pass
 
 

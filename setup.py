@@ -26,7 +26,13 @@ setup(
         "License :: OSI Approved",
         "Topic :: Scientific/Engineering",
     ],
-    install_requires=["kloppy>=1.5.1", "pyspark>=3.0.1", "graphframes>=0.6"],
+    install_requires=[
+        "kloppy>=1.5.1",
+        "pyspark>=3.0.1",
+        "graphframes>=0.6",
+        "numpy>=1.19.4",
+        "matplotlib>=3.3.3",
+    ],
     extras_require={
         "test": ["pytest", "pandas>=1.0.0"],
         "development": ["pre-commit"],

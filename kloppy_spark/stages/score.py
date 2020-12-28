@@ -18,8 +18,10 @@ class Score(Stage):
                 & (F.col("team_id") == team_id)
             )
 
-        windowSpec = Window.orderBy("period_id", "timestamp").rangeBetween(
-            Window.unboundedPreceding, 0
+        windowSpec = (
+            Window.partitionBy("match")
+            .orderBy("period_id", "timestamp")
+            .rangeBetween(Window.unboundedPreceding, 0)
         )
         home_score = F.sum(is_goal(self.home_team).cast("long")).over(windowSpec)
         away_score = F.sum(is_goal(self.away_team).cast("long")).over(windowSpec)
